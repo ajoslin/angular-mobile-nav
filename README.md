@@ -10,7 +10,8 @@ Usage
 
 * Setup your routes as normal with `$routeProvider`.
 * Use the `$mobileNav` service to do your transition, instead of `<a>` links.  Use `$mobileNav.go('/path')`, and `$mobileNav.back()`.  
-* If you wish to change URLs without adding to the history (Eg for tabs on a mobile app, you want to go somewhere but not add to the history for tab press), use `$mobileNav.goNoHistory('/path')`.
+* If you wish to change URLs without adding to the history (Eg for tabs on a mobile app), use `$mobileNav.goNoHistory('/path')`.
+* Use the `<mobile-view>` element in place of `<ng-view>`
 
 TODO
 ----
