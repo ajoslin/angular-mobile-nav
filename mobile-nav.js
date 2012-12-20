@@ -1,15 +1,9 @@
-
 /*
   TODO: Add phonegap event listener for android back button
   TODO: Make android back button exit app if history stack is empty
   TODO: Make transition type configurable either by class name or give transition type strings people can use ("slide", "slideVertical", etc)
 */
-/*
- * Navigate service
- * events:
- * '$routeTransitionStart', params: (inPage, outPage, direction)
- * '$routeTransitionSuccess', params: (inPage, outPage)
- */
+
 angular.module('mobileNav', [])
 .service('$mobileNav', ['$rootScope', '$route', '$location', 
 function($rootScope, $route, $location) {
