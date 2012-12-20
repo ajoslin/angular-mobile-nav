@@ -9,7 +9,6 @@ app.config(function($routeProvider) {
 });
 
 app.controller('MainCtrl', function($scope, $route, $mobileNav, $location) {
-  $scope.name = 'World';
   $scope.route = $route;
   $scope.nav = $mobileNav;
   $scope.history = function() { 
