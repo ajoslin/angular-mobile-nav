@@ -1,7 +1,7 @@
 angular-mobile-nav
 ==================
 
-[](Plunker Example)
+[http://embed.plnkr.co/5CmSiz5d5qoDRQlwiKxf](Demo)
 
 A simple navigation service and directive which will transition between partials.  Intended for mobile applications.
 
