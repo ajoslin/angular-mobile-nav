@@ -5,8 +5,7 @@
 */
 
 angular.module('mobileNav', [])
-.service('$mobileNav', ['$rootScope', '$route', '$location', 
-function($rootScope, $route, $location) {
+.service('$mobileNav', ['$rootScope', '$location', function($rootScope, $location) {
   var self = this;  
   
   function Page(path, noHistory) {
@@ -80,8 +79,8 @@ function($rootScope, $route, $location) {
     });
   }
 }])
-.directive('mobileView', ['$rootScope', '$compile', '$controller', '$mobileNav', '$route', '$timeout', '$q',
-function($rootScope, $compile, $controller, $mobileNav, $route, $timeout, $q) {
+.directive('mobileView', ['$rootScope', '$compile', '$controller', '$route', 
+function($rootScope, $compile, $controller, $route) {
   
   function link(scope, viewElement, attrs) {    
     //Insert page into dom
