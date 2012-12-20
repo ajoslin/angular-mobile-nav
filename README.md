@@ -1,7 +1,7 @@
 angular-mobile-nav
 ==================
 
-[http://embed.plnkr.co/5CmSiz5d5qoDRQlwiKxf](Demo)
+[Demo](http://embed.plnkr.co/5CmSiz5d5qoDRQlwiKxf)
 
 A simple navigation service and directive which will transition between partials.  Intended for mobile applications.
 
