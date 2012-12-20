@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="angularjs-starter">
+  
+  <head lang="en">
+    <meta charset="utf-8">
+    <title>Custom Plunker</title>
+    <script src="angular.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js"></script>
+  </head>
+  
+  <body ng-controller="MainCtrl">
+    <pre>history = {{history()}}<br />current = {{path()}}</pre>
+    <a ng-click="nav.go('/one')">Page One</a> |
+    <a ng-click="nav.go('/two')">Page Two</a> |
+    <a ng-click="nav.back()">Back</a> |
+    <a ng-click="nav.goNoHistory('/one')">Page One, No History</a> |
+    <a ng-click="nav.goNoHistory('/two')">Page Two, No History</a>
+    <mobile-view></mobile-view>
+  </body>
+</html>
