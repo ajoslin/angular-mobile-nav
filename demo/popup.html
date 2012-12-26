@@ -1,0 +1,10 @@
+<div class="toolbar">
+  <h1 id="pageTitle">Popup!</h1>
+  <a class="button" ng-tap="$navigate.back()">Done</a>
+</div>
+<div class="content panel">
+  Here's a popup.  You'd put some modally content in here. Probably.
+  <br />
+  <span style="color:{{col}}">And of course, everything is still angular-y</span>
+  <br /><input ng-model="col" ng-init="col='darkred'">
+</div>

@@ -2,27 +2,19 @@
 <html ng-app="myApp">
   
   <head lang="en">
-    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Angular Mobile Nav</title>
+    <link rel="stylesheet" href="../mobile-nav.css">
+    <link rel="stylesheet" href="iui.css">
+    <link rel="stylesheet" href="iui/default-theme.css" type="text/css"/>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
     <script src="app.js"></script>
     <script src="../mobile-nav.js"></script>
-    <link rel="stylesheet" href="../mobile-nav.css">
   </head>
   
   <body ng-controller="MainCtrl">
-    <a ng-click="nav.go('/one', trans)">Page One</a> |
-    <a ng-click="nav.go('/two', trans)">Page Two</a> |
-    <a ng-click="nav.back()">Back</a> |
-    <div ng-init="trans = 'slide'">
-      transition type:
-      <input type="radio" value="slide" ng-model="trans">slide | 
-      <input type="radio" value="modal" ng-model="trans">modal |
-      <input type="radio" value="none" ng-model="trans">none
-    </div>
-    <div style="font-size: 14px; line-height: 16px; border: 1px dotted black; margin: 3px; padding: 3px;">
-      history: <span ng-repeat="h in history"> {{h.path}}-{{h.transition || 'none'}}</span>
-    </div>
     <mobile-view></mobile-view>
   </body>
 </html>

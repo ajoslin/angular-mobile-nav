@@ -1,21 +1,38 @@
-var app = angular.module('myApp', ['mobile-navigate'])
-
-app.config(function($routeProvider) {
+angular.module('myApp', ['mobile-navigate'])
+.config(function($routeProvider) {
   $routeProvider.when("/one", {
-      template: '<div style="height: 300px; background:blue; border: 2px solid black;">Hello! I am page one.</div>'
+    templateUrl: "page1.html"
   }).when("/two", {
-      template: '<div style="height: 300px; background:red; border: 2px solid black;">What\'s up! This is page two!</div>'
+    templateUrl: "page2.html"
+  }).when("/popup", {
+    templateUrl: "popup.html"
+  }).when("/monkey", {
+    templateUrl: "monkey.html"
+  }).when("/", {
+    templateUrl: "home.html"
+  }).otherwise({
+    redirectTo: "/"
   });
-});
-
-app.controller('MainCtrl', function($scope, $route, $navigate, $location) {
-  $scope.route = $route;
-  $scope.nav = $navigate;
-  
-  $scope.history = $navigate.history;
-
-  $scope.path = function() {
-    return $location.path();
+})
+.controller('MainCtrl', function($scope, $navigate) {
+  $scope.$navigate = $navigate;
+  $navigate.go("/",'none');
+})
+.directive('ngTap', function() {
+  var isTouchDevice = !!("ontouchstart" in window);
+  return function(scope, elm, attrs) {
+    if (isTouchDevice) {
+      var tapping = false;
+      elm.bind('touchstart', function() { tapping = true; });
+      elm.bind('touchmove', function() { tapping = false; });
+      elm.bind('touchend', function() { 
+        tapping && scope.$apply(attrs.ngTap);
+      });
+    } else {
+      elm.bind('click', function() {
+        scope.$apply(attrs.ngTap);
+      });
+    }
   };
 });
 
