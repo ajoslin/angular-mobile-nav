@@ -49,7 +49,7 @@ angular.module('mobile-navigate').factory('$change', ['$q', '$timeout', function
       //Move source from shown to outside page
       removeClass(source, showClass);
       addClass(source, sourceClass);
-    });
+    },30); //TODO fix bug where classes don't apply. 30ms timeout is temp fix
 
     function done() {
       //$timeout so scope is sure to digest on resolve
