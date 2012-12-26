@@ -14,8 +14,15 @@
     <a ng-click="nav.go('/one', trans)">Page One</a> |
     <a ng-click="nav.go('/two', trans)">Page Two</a> |
     <a ng-click="nav.back()">Back</a> |
-    <input ng-model="trans" ng-init="trans = 'slide'">
-    <li ng-repeat="h in history">{{h.path}} - {{h.transition || 'none'}}</li>
+    <div ng-init="trans = 'slide'">
+      transition type:
+      <input type="radio" value="slide" ng-model="trans">slide | 
+      <input type="radio" value="modal" ng-model="trans">modal |
+      <input type="radio" value="none" ng-model="trans">none
+    </div>
+    <div style="font-size: 14px; line-height: 16px; border: 1px dotted black; margin: 3px; padding: 3px;">
+      history: <span ng-repeat="h in history"> {{h.path}}-{{h.transition || 'none'}}</span>
+    </div>
     <mobile-view></mobile-view>
   </body>
 </html>

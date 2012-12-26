@@ -2,9 +2,9 @@ var app = angular.module('myApp', ['mobile-navigate'])
 
 app.config(function($routeProvider) {
   $routeProvider.when("/one", {
-    template: '<div style="height: 400px; background:blue;">Hello! I am page one.</div>'
+      template: '<div style="height: 300px; background:blue; border: 2px solid black;">Hello! I am page one.</div>'
   }).when("/two", {
-    template: '<div style="height: 400px; background:red;">What\'s up! This is page two!</div>'
+      template: '<div style="height: 300px; background:red; border: 2px solid black;">What\'s up! This is page two!</div>'
   });
 });
 
