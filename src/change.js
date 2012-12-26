@@ -1,6 +1,6 @@
 angular.module('mobile-navigate').factory('$change', ['$q', '$timeout', function($q, $timeout) {
   var transitionPresets = {  //[destClass, sourceClass]
-    //Modal: new page pops up, old page stays
+    //Modal: new page pops up, old page sits there until new page is over it
     'modal': ['modal', ''],
     'none': ['', '']
   };
