@@ -1,3 +1,6 @@
+/* $change
+ * Service to transition between two elements 
+ */
 angular.module('mobile-navigate').factory('$change', ['$q', '$timeout', function($q, $timeout) {
   var transitionPresets = {  //[destClass, sourceClass]
     //Modal: new page pops up, old page sits there until new page is over it
@@ -6,7 +9,6 @@ angular.module('mobile-navigate').factory('$change', ['$q', '$timeout', function
   };
   var defaultOptions = {
     'prefix': 'mb-',
-    'reverse': false
   };
   var inClass = "in", outClass = "out", showClass = "shown";
 
