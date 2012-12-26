@@ -1,7 +1,7 @@
 angular-mobile-nav
 ==================
 
-[Demo](http://embed.plnkr.co/5CmSiz5d5qoDRQlwiKxf) (Only will work in webkit browsers.  Intended for Android/iOS)
+[Demo](http://ajoslin.github.com/angular-mobile-nav) (Only will work in webkit browsers.  Intended for Android/iOS)
 
 A simple navigation service and directive which will transition between partials.  Intended for mobile applications.
 
