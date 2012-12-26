@@ -5,18 +5,17 @@
     <meta charset="utf-8">
     <title>Angular Mobile Nav</title>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
-    <link rel="stylesheet" href="style.css">
     <script src="app.js"></script>
-    <script src="mobile-nav.js"></script>
+    <script src="../mobile-nav.js"></script>
+    <link rel="stylesheet" href="../mobile-nav.css">
   </head>
   
   <body ng-controller="MainCtrl">
-    <pre>history = {{history()}}<br />current = {{path()}}</pre>
-    <a ng-click="nav.go('/one')">Page One</a> |
-    <a ng-click="nav.go('/two')">Page Two</a> |
+    <a ng-click="nav.go('/one', trans)">Page One</a> |
+    <a ng-click="nav.go('/two', trans)">Page Two</a> |
     <a ng-click="nav.back()">Back</a> |
-    <a ng-click="nav.goNoHistory('/one')">Page One, No History</a> |
-    <a ng-click="nav.goNoHistory('/two')">Page Two, No History</a>
+    <input ng-model="trans" ng-init="trans = 'slide'">
+    <li ng-repeat="h in history">{{h.path}} - {{h.transition || 'none'}}</li>
     <mobile-view></mobile-view>
   </body>
 </html>

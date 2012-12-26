@@ -1,1 +1,4 @@
 *.swp
+node_modules
+npm_debug.log
+*.rdb

@@ -1,0 +1,41 @@
+/* Prefix all pages with mb- for no collisions */
+
+/* Page class for all mobile pages */
+.mb-page {
+  width: 100%;
+  height:100%;
+  position: absolute;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  z-index: 1;
+}
+
+/*
+ * .in puts page in position ready to transition in
+ * .shown puts page in visible area
+ * .out puts page outside screen after being visible
+ */
+/* slide - slide pages from left to right */
+.mb-page.mb-in.mb-slide {
+  -webkit-transform: translateX(-100%);
+}
+.mb-page.mb-shown.mb-slide {
+  -webkit-transform: translateX(0%);
+}
+.mb-page.mb-out.mb-slide {
+  -webkit-transform: translateX(100%);
+}
+/* modal - show a page over the current one coming up from bottom.
+   goes in from bottom and out to bottom */
+.mb-modal {
+  z-index: 2;
+}
+.mb-page.mb-in.mb-modal {
+  -webkit-transform: translateY(100%);
+}
+.mb-page.mb-shown.mb-modal {
+  -webkit-transform: translateY(0%);
+}
+.mb-page.mb-out.mb-modal {
+  -webkit-transform: translateY(100%);
+}
+
