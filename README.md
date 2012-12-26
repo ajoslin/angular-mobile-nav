@@ -18,4 +18,3 @@ TODO
 ----
 
 * Add automated tests to run on iOS/Android (probably github page with "Run tests" button)
-* Add more full-fledged demo (github page with iUi or something)
