@@ -9,14 +9,15 @@ Usage
 -----
 
 * Setup your routes as normal with `$routeProvider`.
-* Use the `$mobileNav` service to do your transition, instead of `<a>` links.  Use `$mobileNav.go('/path')`, and `$mobileNav.back()`.  
-* If you wish to change URLs without adding to the history (Eg for tabs on a mobile app), use `$mobileNav.goNoHistory('/path')`.
-* Use the `<mobile-view>` element in place of `<ng-view>`
+* Use the `$navigate` service to do your transition, instead of `<a>` links.  Use `$mobileNav.go('/path')`, and `$mobileNav.back()`.  
+* You can erase history (eg when switching tabs) with `$navigate.eraseHistory()`
+* You can add transition classes of your own (use the same prefix as given css file, and same style). There are three presets available: `slide`, `modal`, and `none`.  Use them in the `go` function, eg `$navigate.go('/path', 'modal')`.
+* Use the `<mobile-view>` element instead of the normal `<ng-view>`.
 
 TODO
 ----
 
 * Add phonegap event listener for android back button
 * Make android back button exit app if history stack is empty
-* Make transition type configurable either by class name or give transition type strings people can use ("slide", "slideVertical", etc)
-* Add more full-fledged demo
+* Add tests to run on iOS/Android (probably github page with "Run tests" button)
+* Add more full-fledged demo (github page with iUi or something)
