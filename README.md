@@ -17,7 +17,5 @@ Usage
 TODO
 ----
 
-* Add phonegap event listener for android back button
-* Make android back button exit app if history stack is empty
 * Add tests to run on iOS/Android (probably github page with "Run tests" button)
 * Add more full-fledged demo (github page with iUi or something)
