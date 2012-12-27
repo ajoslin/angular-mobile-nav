@@ -14,6 +14,12 @@ Usage
 * You can add transition classes of your own (check out the css file for how the current ones are done). There are three presets available: `slide`, `modal`, and `none`.  Use them in the `go` function, eg `$navigate.go('/path', 'modal')`.
 * Use the `<mobile-view>` element instead of the normal `<ng-view>`.
 
+Development
+-----------
+
+* To use the Makefile, install jshint and uglifyjs with `npm install -g jshint uglifyjs`.
+* If you are on windows and can't use a Makefile, there's nothing else at the moment.
+
 TODO
 ----
 
