@@ -19,6 +19,7 @@ Development
 
 * To use the Makefile, install jshint and uglifyjs with `npm install -g jshint uglifyjs`.
 * If you are on windows and can't use a Makefile, there's nothing else at the moment.
+* When you commit be sure not to commit the `dist` folder, that is only committed on new versions
 
 TODO
 ----
