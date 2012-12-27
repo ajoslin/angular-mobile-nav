@@ -6,11 +6,9 @@ angular.module('mobile-navigate').factory('$change', ['$q', '$timeout', function
     //Modal: new page pops up, old page sits there until new page is over it
     'modal': ['modal', ''],
     'none': ['', '']
-  };
-  var defaultOptions = {
-    'prefix': 'mb-',
-  };
-  var inClass = "in", outClass = "out", showClass = "shown";
+  }, defaultOptions = {
+      'prefix': 'mb-'
+  }, inClass = "in", outClass = "out", showClass = "shown";
 
   return function change(dest, source, transType, reverse, options) {
     options = angular.extend(options || {}, defaultOptions);
@@ -48,7 +46,7 @@ angular.module('mobile-navigate').factory('$change', ['$q', '$timeout', function
       //Move source from shown to outside page
       removeClass(source, showClass);
       addClass(source, sourceClass);
-    },30); //TODO fix bug where classes don't apply. 30ms timeout is temp fix
+    },30); //TODO fix bug where classes don't apply on slower mobile browsers. 30ms timeout is temp fix
 
     function done() {
       //$timeout so scope is sure to digest on resolve
@@ -76,5 +74,5 @@ angular.module('mobile-navigate').factory('$change', ['$q', '$timeout', function
       deferred.resolve();
     };
     return deferred.promise;
-  }
+  };
 }]);

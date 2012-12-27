@@ -1,7 +1,7 @@
 angular.module('mobile-navigate').service('$navigate', ['$rootScope', '$location',
 function($rootScope, $location) {
   var self = this,
-    navHistory = self.history = []; //we keep our own version of history and ignore window.history
+    navHistory = []; //we keep our own version of history and ignore window.history
 
   function Page(path, transition) {
     this.path = path;
@@ -11,7 +11,7 @@ function($rootScope, $location) {
   function navigate(destination, source, isBack) {
     $rootScope.$broadcast('$pageTransitionStart', destination, source, isBack);
     self.current = self.next;
-  };
+  }
 
   /* 
    * Will listen for a route change success and call the selected callback
@@ -35,7 +35,7 @@ function($rootScope, $location) {
   //Sometimes you want to erase history
   self.eraseHistory = function() {
     navHistory.length = 0;
-  }
+  };
   self.back = function() {
     if (navHistory.length > 0) {
       var previous = navHistory[navHistory.length-1];
@@ -48,7 +48,7 @@ function($rootScope, $location) {
       return true;
     }
     return false;
-  }
+  };
 
   //Android back button functionality for phonegap
   if ((window.cordova || window.phonegap) && window.device && 

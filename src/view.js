@@ -16,7 +16,7 @@ function($rootScope, $compile, $controller, $route, $change) {
       if (current.controller) {
         locals.$scope = page.scope;
         page.controller = $controller(page.route.controller, locals);
-        page.element.contents().data('$ngControllerController', page.controller)
+        page.element.contents().data('$ngControllerController', page.controller);
       }
       $compile(page.element.contents())(page.scope);
       viewElement.append(page.element);
