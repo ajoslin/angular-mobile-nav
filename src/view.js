@@ -1,6 +1,4 @@
-/*
-  TODO: Make transition type configurable either by class name or give transition type strings people can use ("slide", "slideVertical", etc)
-*/
+
 angular.module('mobile-navigate').directive('mobileView', ['$rootScope', '$compile', '$controller', '$route', '$change',
 function($rootScope, $compile, $controller, $route, $change) {
 

@@ -36,15 +36,14 @@ function($rootScope, $location) {
   self.eraseHistory = function() {
     navHistory.length = 0;
   }
-  self.back = function back(options) {
-    (options || (options = {})).isBack = true;
+  self.back = function() {
     if (navHistory.length > 0) {
       var previous = navHistory[navHistory.length-1];
       $location.path(previous.path);
       self.onRouteSuccess = function() {
         navHistory.pop();
         self.next = previous;
-        navigate(self.next, self.current, options);
+        navigate(self.next, self.current, true);
       };
       return true;
     }
