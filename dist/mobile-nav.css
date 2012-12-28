@@ -2,40 +2,67 @@
 
 /* Page class for all mobile pages */
 .mb-page {
-  -webkit-transition: -webkit-transform 0.3s ease;
   z-index: 1;
   position: absolute;
   width: 100%;
   height: 100%;
 }
+/* When going back, will apply reverse class */
+.mb-reverse {
+  -webkit-animation-direction: reverse;
+}
+
+/* 
+ * Slide
+ * slide pages horizontally
+ */
+@-webkit-keyframes slideFromRight {
+  0% {
+    -webkit-transform: translate3d(100%, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0%, 0, 0);
+  }
+}
+@-webkit-keyframes slideToLeft {
+  0% {
+    -webkit-transform: translate3d(0%);
+  }
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+  }
+}
+.mb-slide {
+  -webkit-animation-duration: 0.3s;
+  -webkit-animation-timing-function: ease;
+}
+.mb-slide.mb-in {
+  -webkit-animation-name: slideFromRight;
+}
+.mb-slide.mb-out {
+  -webkit-animation-name: slideToLeft;
+}
 
 /*
- * .in puts page in position ready to transition in
- * .shown puts page in visible area
- * .out puts page outside screen after being visible
+ * Modal!
+ * slide a page in from the bottom onto a page
  */
-/* slide - slide pages from left to right */
-.mb-page.mb-in.mb-slide {
-  -webkit-transform: translateX(100%);
+@-webkit-keyframes modal {
+  0% {
+    -webkit-transform: translate3d(0, 100%, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0%, 0);
+  }
 }
-.mb-page.mb-shown.mb-slide {
-  -webkit-transform: translateX(0%);
-}
-.mb-page.mb-out.mb-slide {
-  -webkit-transform: translateX(-100%);
-}
-/* modal - show a page over the current one coming up from bottom.
-   goes in from bottom and out to bottom */
 .mb-modal {
   z-index: 2;
+  -webkit-animation-duration: 0.4s;
+  -webkit-animation-timing-function: ease;
 }
-.mb-page.mb-in.mb-modal {
-  -webkit-transform: translateY(100%);
+.mb-modal.mb-in {
+  -webkit-animation-name: modal;
 }
-.mb-page.mb-shown.mb-modal {
-  -webkit-transform: translateY(0%);
+.mb-modal.mb-out {
+  -webkit-animation-name: modal;
 }
-.mb-page.mb-out.mb-modal {
-  -webkit-transform: translateY(100%);
-}
-

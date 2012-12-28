@@ -9,18 +9,30 @@ angular.module('mobile-navigate').factory('$change', ['$q', '$timeout', function
     'none': ['', '']
   }, defaultOptions = {
       'prefix': 'mb-'
-  }, inClass = "in", outClass = "out", showClass = "shown";
+  }, IN_CLASS = "in",
+    OUT_CLASS = "out", 
+    REVERSE_CLASS = "reverse",
+    ANIMATION_END = "webkitAnimationEnd";
 
   return function change(dest, source, transType, reverse, options) {
     options = angular.extend(options || {}, defaultOptions);
     var deferred = $q.defer(),
-      destClass, sourceClass, destTransClass, sourceTransClass;
+      destTransClass, sourceTransClass;
 
-    function addClass(el, cls) {
-      el && el.addClass(options.prefix + cls);
+    function buildClasses(classes) {
+      var classStr = "";
+      for (var i=0, ii=classes.length; i<ii; i++) {
+        if (classes[i].length) {
+          classStr += " mb-" + classes[i];
+        }
+      }
+      return classStr;
     }
-    function removeClass(el, cls) {
-      el && el.removeClass(options.prefix + cls);
+    function addClasses(el, classes) {
+      el && el.addClass(buildClasses(classes));
+    }
+    function removeClasses(el, classes) {
+      el && el.removeClass(buildClasses(classes));
     }
 
     //Convert a preset (eg 'modal') to its array of preset classes if it exists
@@ -29,45 +41,41 @@ angular.module('mobile-navigate').factory('$change', ['$q', '$timeout', function
     transition = transitionPresets[transType] ?
       transitionPresets[transType] : 
       [transType, transType];
-    
-    destClass = reverse ? outClass : inClass;
-    sourceClass = reverse ? inClass : outClass;
-    destTransClass = transition[reverse ? 1 : 0];
-    sourceTransClass = transition[reverse ? 0 : 1];
 
-    addClass(dest, destClass);
-    addClass(dest, destTransClass);
-    addClass(source, sourceTransClass);
+    var destClasses = [], sourceClasses = [];
+    destClasses.push(reverse ? OUT_CLASS : IN_CLASS);
+    destClasses.push(destTransClass = transition[reverse ? 1 : 0]);
+    reverse && destClasses.push(REVERSE_CLASS);
 
-    //A timeout so the inclass has time to apply itself
-    setTimeout(function() {
-      //Move destination from outside page to shown
-      removeClass(dest, destClass);
-      addClass(dest, showClass);
-      //Move source from shown to outside page
-      removeClass(source, showClass);
-      addClass(source, sourceClass);
-    },30); //TODO fix bug where classes don't apply on slower mobile browsers. 30ms timeout is temp fix
+    sourceClasses.push(reverse ? IN_CLASS : OUT_CLASS);
+    sourceClasses.push(sourceTransClass = transition[reverse ? 0 : 1]);
+    reverse && sourceClasses.push(REVERSE_CLASS);
+
+    addClasses(dest, destClasses);
+    addClasses(source, sourceClasses);
 
     function done() {
-      //$timeout so scope is sure to digest on resolve
+      //If a page is removed after being 'higher up' in z-index than the new page,
+      // it will flicker over the new page for a sec before being destroyed. this fixes that.
+      source && source.css('z-index', 0);
+      //$timeout so scope is sure to digest on resolve. the timeout also lets the z-index apply
       $timeout(deferred.resolve);
     }
 
     //Find which element (sometimes none) to bind for ending
     var boundElement;
     if (destTransClass && destTransClass.length) {
-      (boundElement = dest).bind('webkitTransitionEnd', done);
+      (boundElement = dest).bind(ANIMATION_END, done);
     } else if (source && sourceTransClass && sourceTransClass.length) {
-      (boundElement = source).bind('webkitTransitionEnd', done);
+      (boundElement = source).bind(ANIMATION_END, done);
     } else {
       deferred.resolve();
     }
 
     deferred.promise.then(function() {
-      boundElement && boundElement.unbind('webkitTransitionEnd', done);
-      removeClass(dest, destTransClass);
-      removeClass(source, sourceTransClass);
+      boundElement && boundElement.unbind(ANIMATION_END, done);
+      removeClasses(source, sourceClasses);
+      removeClasses(dest, destClasses);
     });
 
     //Let the user of change 'cancel' to finish transition early if they wish
@@ -166,19 +174,12 @@ function($rootScope, $compile, $controller, $route, $change) {
       page.scope.$emit('$viewContentLoaded');
       page.scope.$eval(attrs.onLoad);
     }
-    //Remove page from dom
-    function destroyPage(page) {
-    }
-    function Transition(dest, source, reverse) {
-    }
 
     var currentTrans;
     scope.$on('$pageTransitionStart', function transitionStart($event, dest, source, reverse) {
       function transition() {
-        var promise;
-
         insertPage(dest);
-        promise = $change(dest.element, (source ? source.element : null),
+        var promise = $change(dest.element, (source ? source.element : null),
           (reverse ? source.transition : dest.transition), reverse);
 
         promise.then(function() {

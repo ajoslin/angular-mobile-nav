@@ -16,7 +16,7 @@ angular.module('myApp', ['mobile-navigate'])
 })
 .controller('MainCtrl', function($scope, $navigate) {
   $scope.$navigate = $navigate;
-  $navigate.go("/",'none');
+  $navigate.go('/','none');
 })
 .directive('ngTap', function() {
   var isTouchDevice = !!("ontouchstart" in window);
