@@ -18,7 +18,7 @@ angular.module('mobile-navigate').factory('$change', ['$q', '$timeout', function
     var deferred = $q.defer(),
       destTransClass, sourceTransClass;
 
-    function buildClasses(classes) {
+    function buildClassString(classes) {
       var classStr = "";
       for (var i=0, ii=classes.length; i<ii; i++) {
         if (classes[i].length) {
@@ -26,12 +26,6 @@ angular.module('mobile-navigate').factory('$change', ['$q', '$timeout', function
         }
       }
       return classStr;
-    }
-    function addClasses(el, classes) {
-      el && el.addClass(buildClasses(classes));
-    }
-    function removeClasses(el, classes) {
-      el && el.removeClass(buildClasses(classes));
     }
 
     //Convert a preset (eg 'modal') to its array of preset classes if it exists
@@ -41,17 +35,23 @@ angular.module('mobile-navigate').factory('$change', ['$q', '$timeout', function
       transitionPresets[transType] : 
       [transType, transType];
 
-    var destClasses = [], sourceClasses = [];
-    destClasses.push(reverse ? OUT_CLASS : IN_CLASS);
-    destClasses.push(destTransClass = transition[reverse ? 1 : 0]);
-    reverse && destClasses.push(REVERSE_CLASS);
+    var destClasses = buildClassString([
+      reverse ? OUT_CLASS : IN_CLASS,
+      (destTransClass = transition[reverse ? 1 : 0]),
+      reverse && REVERSE_CLASS || ''
+    ]);
+    dest.addClass(destClasses);
 
-    sourceClasses.push(reverse ? IN_CLASS : OUT_CLASS);
-    sourceClasses.push(sourceTransClass = transition[reverse ? 0 : 1]);
-    reverse && sourceClasses.push(REVERSE_CLASS);
+    var sourceClasses;
+    if (source) {
+      sourceClasses = buildClassString([
+       reverse ? IN_CLASS : OUT_CLASS,
+       (sourceTransClass = transition[reverse ? 0 : 1]),
+       reverse && REVERSE_CLASS || ''
+      ]);
+      source.addClass(sourceClasses);
+    }
 
-    addClasses(dest, destClasses);
-    addClasses(source, sourceClasses);
 
     function done() {
       //If a page is removed after being 'higher up' in z-index than the new page,
@@ -73,8 +73,8 @@ angular.module('mobile-navigate').factory('$change', ['$q', '$timeout', function
 
     deferred.promise.then(function() {
       boundElement && boundElement.unbind(ANIMATION_END, done);
-      removeClasses(source, sourceClasses);
-      removeClasses(dest, destClasses);
+      dest.removeClass(destClasses);
+      source && source.removeClass(sourceClasses);
     });
 
     //Let the user of change 'cancel' to finish transition early if they wish

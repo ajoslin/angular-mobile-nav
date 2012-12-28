@@ -1,7 +1,6 @@
 angular.module('mobile-navigate').directive('mobileView', ['$rootScope', '$compile', '$controller', '$route', '$change',
 function($rootScope, $compile, $controller, $route, $change) {
 
-
   function link(scope, viewElement, attrs) {    
     //Insert page into dom
     function insertPage(page) {

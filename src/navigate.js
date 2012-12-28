@@ -19,16 +19,16 @@ function($rootScope, $location) {
    * /link1 then press back before /link1 is done, it will go listen for the back
    */
   self.onRouteSuccess = angular.noop; //default value
-  $rootScope.$on('$routeChangeSuccess', function() {
-    self.onRouteSuccess();
+  $rootScope.$on('$routeChangeSuccess', function($event, next, last) {
+    self.onRouteSuccess($event, next, last);
   });
 
   self.go = function go(path, transition) {
     $location.path(path);
     //Wait for successful route change before actually doing stuff
-    self.onRouteSuccess = function() {
+    self.onRouteSuccess = function($event, next, last) {
       self.current && navHistory.push(self.current);
-      self.next = new Page(path, transition);
+      self.next = new Page(path, transition || next.$route.transition);
       navigate(self.next, self.current, false);
     };
   };
