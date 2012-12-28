@@ -22,19 +22,12 @@ function($rootScope, $compile, $controller, $route, $change) {
       page.scope.$emit('$viewContentLoaded');
       page.scope.$eval(attrs.onLoad);
     }
-    //Remove page from dom
-    function destroyPage(page) {
-    }
-    function Transition(dest, source, reverse) {
-    }
 
     var currentTrans;
     scope.$on('$pageTransitionStart', function transitionStart($event, dest, source, reverse) {
       function transition() {
-        var promise;
-
         insertPage(dest);
-        promise = $change(dest.element, (source ? source.element : null),
+        var promise = $change(dest.element, (source ? source.element : null),
           (reverse ? source.transition : dest.transition), reverse);
 
         promise.then(function() {
