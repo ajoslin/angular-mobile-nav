@@ -1,4 +1,3 @@
-
 angular.module('mobile-navigate').directive('mobileView', ['$rootScope', '$compile', '$controller', '$route', '$change',
 function($rootScope, $compile, $controller, $route, $change) {
 
@@ -15,7 +14,7 @@ function($rootScope, $compile, $controller, $route, $change) {
       page.scope = scope.$new();
       if (current.controller) {
         locals.$scope = page.scope;
-        page.controller = $controller(page.route.controller, locals);
+        page.controller = $controller(current.controller, locals);
         page.element.contents().data('$ngControllerController', page.controller);
       }
       $compile(page.element.contents())(page.scope);
