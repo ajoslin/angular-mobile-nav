@@ -3,7 +3,7 @@ angular.module('mobile-navigate', []);
  * Service to transition between two elements 
  */
 angular.module('mobile-navigate').factory('$change', ['$q', '$timeout', function($q, $timeout) {
-  var transitionPresets = {  //[destClass, sourceClass]
+  var transitionPresets = {  //[nextClass, prevClass]
     //Modal: new page pops up, old page sits there until new page is over it
     'modal': ['modal', ''],
     'none': ['', '']
@@ -14,10 +14,10 @@ angular.module('mobile-navigate').factory('$change', ['$q', '$timeout', function
     REVERSE_CLASS = "reverse",
     ANIMATION_END = "webkitAnimationEnd";
 
-  return function change(dest, source, transType, reverse, options) {
+  return function change(next, prev, transType, reverse, options) {
     options = angular.extend(options || {}, defaultOptions);
     var deferred = $q.defer(),
-      destTransClass, sourceTransClass;
+      nextTransClass, prevTransClass;
 
     function buildClassString(classes) {
       var classStr = "";
@@ -31,51 +31,53 @@ angular.module('mobile-navigate').factory('$change', ['$q', '$timeout', function
 
     //Convert a preset (eg 'modal') to its array of preset classes if it exists
     //else, just convert eg 'slide' to ['slide', 'slide'], so both elements get it
-    //The array layout is [destinationClass, sourceClass]
+    //The array layout is [nextinationClass, prevClass]
     transition = transitionPresets[transType] ?
       transitionPresets[transType] : 
       [transType, transType];
 
-    var destClasses = buildClassString([
+    //Hack for white flash: z-index stops flash, offsetWidth thing forces z-index to apply
+    next.css('z-index','-100');
+    next[0].offsetWidth += 0;
+
+    var nextClasses = buildClassString([
       reverse ? OUT_CLASS : IN_CLASS,
-      (destTransClass = transition[reverse ? 1 : 0]),
+      (nextTransClass = transition[reverse ? 1 : 0]),
       reverse && REVERSE_CLASS || ''
     ]);
-    dest.addClass(destClasses);
+    next.addClass(nextClasses);
 
-    var sourceClasses;
-    if (source) {
-      sourceClasses = buildClassString([
+    var prevClasses;
+    if (prev) {
+      prevClasses = buildClassString([
        reverse ? IN_CLASS : OUT_CLASS,
-       (sourceTransClass = transition[reverse ? 0 : 1]),
+       (prevTransClass = transition[reverse ? 0 : 1]),
        reverse && REVERSE_CLASS || ''
       ]);
-      source.addClass(sourceClasses);
+      prev.addClass(prevClasses);
     }
 
+    next.css('z-index', '');
+    next[0].offsetWidth += 0;
 
     function done() {
-      //If a page is removed after being 'higher up' in z-index than the new page,
-      // it will flicker over the new page for a sec before being destroyed. this fixes that.
-      source && source.css('z-index', 0);
-      //$timeout so scope is sure to digest on resolve. the timeout also lets the z-index apply
       $timeout(deferred.resolve);
     }
 
     //Find which element (sometimes none) to bind for ending
     var boundElement;
-    if (destTransClass && destTransClass.length) {
-      (boundElement = dest).bind(ANIMATION_END, done);
-    } else if (source && sourceTransClass && sourceTransClass.length) {
-      (boundElement = source).bind(ANIMATION_END, done);
+    if (nextTransClass && nextTransClass.length) {
+      (boundElement = next).bind(ANIMATION_END, done);
+    } else if (prev && prevTransClass && prevTransClass.length) {
+      (boundElement = prev).bind(ANIMATION_END, done);
     } else {
       deferred.resolve();
     }
 
     deferred.promise.then(function() {
       boundElement && boundElement.unbind(ANIMATION_END, done);
-      dest.removeClass(destClasses);
-      source && source.removeClass(sourceClasses);
+      next.removeClass(nextClasses);
+      prev && prev.removeClass(prevClasses);
     });
 
     //Let the user of change 'cancel' to finish transition early if they wish
