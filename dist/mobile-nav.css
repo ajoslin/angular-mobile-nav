@@ -50,8 +50,12 @@
   0% {
     -webkit-transform: translate3d(0, 100%, 0);
   }
+  99% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+  }
   100% {
-    -webkit-transform: translate3d(0, 0%, 0);
+    opacity: 0;
   }
 }
 .mb-modal {
@@ -61,8 +65,11 @@
 }
 .mb-modal.mb-in {
   -webkit-animation-name: modal;
+  -webkit-transform: translate3d(0, 0, 0);
 }
 .mb-modal.mb-out {
   -webkit-animation-name: modal;
-  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-direction: reverse;
+  -webkit-transform: translate3d(0, 100%, 0);
+  opacity: 0;
 }
