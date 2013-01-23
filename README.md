@@ -5,6 +5,8 @@ angular-mobile-nav
 
 A simple navigation service and directive which will transition between partials.  Intended for mobile applications on Android/iOS.
 
+Licensed with MIT License.
+
 Usage
 -----
 
