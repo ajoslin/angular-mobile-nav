@@ -3,6 +3,8 @@ angular-mobile-nav
 
 [Demo](http://ajoslin.github.com/angular-mobile-nav) (Only will work in webkit browsers)
 
+[Download] (v0.1.0)
+
 A simple navigation service and directive which will transition between partials.  Intended for mobile applications on Android/iOS.
 
 Licensed with MIT License.
@@ -21,4 +23,4 @@ Development
 
 * To use the Makefile, install jshint and uglifyjs with `npm install -g jshint uglifyjs`.
 * If you are on windows and can't use a Makefile, there's nothing else at the moment.
-* When you commit be sure not to commit the `dist` folder, that is only committed on new versions
+* When pushing a new build, go to the gh-pages branch and move the contents dist folder up one level (`mv dist/* .`)

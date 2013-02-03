@@ -1,4 +1,5 @@
-/* $change
+/* 
+ * $change
  * Service to transition between two elements 
  */
 angular.module('mobile-navigate').factory('$change', ['$q', '$rootScope', function($q, $rootScope) {

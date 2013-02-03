@@ -1,17 +1,17 @@
 angular.module('myApp', ['mobile-navigate'])
 .config(function($routeProvider) {
   $routeProvider.when("/one", {
-    templateUrl: "page1.html",
+    templateUrl: "content/page1.html"
   }).when("/two", {
-    templateUrl: "page2.html",
+    templateUrl: "content/page2.html",
     transition: "modal" //this is overwritten by the go() in home.html
   }).when("/popup", {
-    templateUrl: "popup.html",
+    templateUrl: "content/popup.html",
     transition: "modal"
   }).when("/monkey", {
-    templateUrl: "monkey.html"
+    templateUrl: "content/monkey.html"
   }).when("/", {
-    templateUrl: "home.html"
+    templateUrl: "content/home.html"
   }).otherwise({
     redirectTo: "/"
   });
