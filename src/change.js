@@ -1,7 +1,7 @@
 /* $change
  * Service to transition between two elements 
  */
-angular.module('mobile-navigate').factory('$change', ['$q', '$timeout', function($q, $timeout) {
+angular.module('mobile-navigate').factory('$change', ['$q', '$rootScope', function($q, $rootScope) {
   var transitionPresets = {  //[nextClass, prevClass]
     //Modal: new page pops up, old page sits there until new page is over it
     'modal': ['modal', ''],
@@ -11,6 +11,7 @@ angular.module('mobile-navigate').factory('$change', ['$q', '$timeout', function
   }, IN_CLASS = "in",
     OUT_CLASS = "out", 
     REVERSE_CLASS = "reverse",
+    DONE_CLASS = "done",
     ANIMATION_END = "webkitAnimationEnd";
 
   return function change(next, prev, transType, reverse, options) {
@@ -22,7 +23,7 @@ angular.module('mobile-navigate').factory('$change', ['$q', '$timeout', function
       var classStr = "";
       for (var i=0, ii=classes.length; i<ii; i++) {
         if (classes[i].length) {
-          classStr += " mb-" + classes[i];
+          classStr += " " + options.prefix + classes[i];
         }
       }
       return classStr;
@@ -60,7 +61,9 @@ angular.module('mobile-navigate').factory('$change', ['$q', '$timeout', function
     next[0].offsetWidth += 0;
 
     function done() {
-      $timeout(deferred.resolve);
+      $rootScope.$apply(function() {
+        deferred.resolve();
+      });
     }
 
     //Find which element (sometimes none) to bind for ending
