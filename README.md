@@ -3,7 +3,7 @@ angular-mobile-nav
 
 [Demo](http://ajoslin.github.com/angular-mobile-nav) (Only will work in webkit browsers)
 
-[Download] (v0.1.0)
+[Download](http://ajoslin.github.com/angular-mobile-nav/mobile-nav.zip) (.zip)
 
 A simple navigation service and directive which will transition between partials.  Intended for mobile applications on Android/iOS.
 
