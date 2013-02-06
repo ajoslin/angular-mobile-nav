@@ -70,12 +70,11 @@ body.landscape > .toolbar > h1 {
 .button {
   position: absolute;
   overflow: hidden;
+  left: 6px;
   top: 8px;
-  right: 6px;
   margin: 0;
   border-width: 0 5px;
   padding: 0 3px;
-  width: auto;
   height: 30px;
   line-height: 30px;
   font-family: inherit;
@@ -95,15 +94,14 @@ body.landscape > .toolbar > h1 {
 
 .leftButton {
   left: 6px;
-  right: auto;
 }
 
 #backButton {
   left: 6px;
-  right: auto;
   padding: 0;
   max-width: 55px;
   border-width: 0 8px 0 14px;
+  margin: auto;
 }
 
 .whiteButton,

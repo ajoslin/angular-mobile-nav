@@ -12,8 +12,10 @@ Licensed with MIT License.
 Usage
 -----
 
+* Include `mobile-nav.js` and `mobile-nav.css` into your page
+* Declare `'mobile-navigate'` as a dependency for your angular app: `angular.module('myApp', ['mobile-navigate']);`
 * Setup your routes as normal with `$routeProvider`.
-* Use the `$navigate` service to do your transition, instead of `<a>` links.  Use `$navigate.go('/path')`, and `$navigate.back()`.  
+* Use the `$navigate` service to do your transitions, instead of `<a>` links.  Use `$navigate.go('/path')`, and `$navigate.back()`.  
 * You can erase history (eg when switching tabs) with `$navigate.eraseHistory()`
 * You can add transition classes of your own (check out the css file for how the current ones are done). There are three presets available: `slide`, `modal`, and `none`.  Use them in the `go` function, eg `$navigate.go('/path', 'modal')`.
 * Use the `<mobile-view>` element instead of the normal `<ng-view>`.
