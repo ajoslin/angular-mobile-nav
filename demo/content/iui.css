@@ -8,19 +8,24 @@ body {
   font-family: Helvetica;
   background: #FFFFFF;
   color: #000000;
-  overflow-x: hidden;
   -webkit-user-select: none;
   -webkit-text-size-adjust: none;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
 }  
 
 .content {
   margin: 0;
   padding: 0;
+  width: 100%;
+  position: absolute;
   left: 0;
   top: 45px;
-  width: 100%;
-  height: auto;
-  min-height: 415px;
+  bottom: 0;
+  right: 0;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 li > a[selected], li > a:active {
