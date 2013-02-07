@@ -24,10 +24,15 @@ function($rootScope, $compile, $controller, $route, $change) {
 
     var currentTrans;
     scope.$on('$pageTransitionStart', function transitionStart($event, dest, source, reverse) {
-      function transition() {
+      function changePage() {
         insertPage(dest);
+        transition = reverse ? source.transition() : dest.transition();
+        //If the page is marked as reverse, reverse the direction (lol)
+        if (dest.reverse() || ($route.current && $route.current.$route.reverse)) {
+          reverse = !reverse;
+        }
         var promise = $change(dest.element, (source ? source.element : null),
-          (reverse ? source.transition : dest.transition), reverse);
+          transition, reverse);
 
         promise.then(function() {
           if (source) {
@@ -41,7 +46,7 @@ function($rootScope, $compile, $controller, $route, $change) {
         return promise;
       }
       currentTrans && currentTrans.cancel();
-      currentTrans = transition(dest, source, reverse);
+      currentTrans = changePage(dest, source, reverse);
     });
   }
   return {

@@ -10,6 +10,9 @@ angular.module('myApp', ['mobile-navigate'])
     transition: "modal"
   }).when("/monkey", {
     templateUrl: "content/monkey.html"
+  }).when("/backwards", {
+    templateUrl: "content/backwards.html",
+    reverse: true
   }).when("/", {
     templateUrl: "content/home.html"
   }).otherwise({
@@ -18,7 +21,6 @@ angular.module('myApp', ['mobile-navigate'])
 })
 .controller('MainCtrl', function($scope, $navigate) {
   $scope.$navigate = $navigate;
-  $navigate.go('/','none');
 })
 .directive('ngTap', function() {
   var isTouchDevice = !!("ontouchstart" in window);
