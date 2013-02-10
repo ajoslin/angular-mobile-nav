@@ -19,6 +19,13 @@ angular.module('myApp', ['mobile-navigate'])
     redirectTo: "/"
   });
 })
+.run(function($route, $http, $templateCache) {
+  angular.forEach($route.routes, function(r) {
+    if (r.templateUrl) { 
+      $http.get(r.templateUrl, {cache: $templateCache});
+    }
+  });
+})
 .controller('MainCtrl', function($scope, $navigate) {
   $scope.$navigate = $navigate;
 })
