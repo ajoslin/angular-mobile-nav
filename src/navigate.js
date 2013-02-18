@@ -50,7 +50,10 @@ function($rootScope, $location, $route) {
     self.onRouteSuccess = null;
   }
   $rootScope.$on('$routeChangeSuccess', function($event, next, last) {
-    (self.onRouteSuccess || defaultRouteSuccess)($event, next, last);
+    // Only navigate if it's a valid route and it's not gonna just redirect immediately
+    if (next.$route && !next.$route.redirectTo) { 
+      (self.onRouteSuccess || defaultRouteSuccess)($event, next, last);
+    }
   });
 
   /*
