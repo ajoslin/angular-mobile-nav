@@ -37,14 +37,50 @@
 }
 .mb-slide.mb-in.mb-reverse {
   -webkit-animation-name: slideOutToRight;
-  -webkit-transform: translate3d(100%,0,0);
 }
 .mb-slide.mb-out {
   -webkit-animation-name: slideOutToLeft;
-  -webkit-transform: translate3d(-100%, 0, 0);
 }
 .mb-slide.mb-out.mb-reverse {
   -webkit-animation-name: slideInFromLeft;
+}
+
+/*
+ * Slide up and down - like modal, but exiting page is animated too.
+ */
+
+@-webkit-keyframes slideInFromTop {
+  0% { -webkit-transform: translate3d(0, 100%, 0); }
+  100% { -webkit-transform: translate3d(0, 0, 0); }
+}
+@-webkit-keyframes slideOutToTop {
+  0% { -webkit-transform: translate3d(0, 0, 0); }
+  100% { -webkit-transform: translate3d(0, 100%, 0); }
+}
+@-webkit-keyframes slideInFromBottom {
+  0% { -webkit-transform: translate3d(0,-100%,0); }
+  100% { -webkit-transform: translate3d(0, 0, 0); }
+}
+@-webkit-keyframes slideOutToBottom {
+  0% { -webkit-transform: translate3d(0,0,0); }
+  100% { -webkit-transform: translate3d(0, -100%, 0); }
+}
+
+.mb-slide-up {
+  -webkit-animation-duration: 0.3s;
+  -webkit-animation-timing-function: ease;
+}
+.mb-slide-up.mb-in {
+  -webkit-animation-name: slideInFromTop;
+}
+.mb-slide-up.mb-in.reverse {
+  -webkit-animation-name: slideOutToTop;
+}
+.mb-slide-up.mb-out {
+  -webkit-animation-name: slideOutToBottom;
+}
+.mb-slide-up.mb-out.reverse {
+  -webkit-animation-name: slideInFromBottom;
 }
 
 

@@ -33,7 +33,7 @@ angular.module('mobile-navigate').factory('$change', ['$q', '$rootScope', functi
     //Convert a preset (eg 'modal') to its array of preset classes if it exists
     //else, just convert eg 'slide' to ['slide', 'slide'], so both elements get it
     //The array layout is [nextinationClass, prevClass]
-    transition = transitionPresets[transType] ?
+    var transition = transitionPresets[transType] ?
       transitionPresets[transType] : 
       [transType, transType];
 

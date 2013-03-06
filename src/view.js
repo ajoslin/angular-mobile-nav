@@ -26,7 +26,7 @@ function($rootScope, $compile, $controller, $route, $change) {
     scope.$on('$pageTransitionStart', function transitionStart($event, dest, source, reverse) {
       function changePage() {
         insertPage(dest);
-        transition = reverse ? source.transition() : dest.transition();
+        var transition = reverse ? source.transition() : dest.transition();
         //If the page is marked as reverse, reverse the direction (lol)
         if (dest.reverse() || ($route.current && $route.current.$route.reverse)) {
           reverse = !reverse;
