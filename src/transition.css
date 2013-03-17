@@ -2,7 +2,6 @@
 
 /* Page class for all mobile pages */
 .mb-page {
-  -webkit-backface-visibility: hidden;
   position: absolute;
   width: 100%;
   height: 100%;
