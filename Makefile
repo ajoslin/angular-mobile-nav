@@ -5,7 +5,7 @@ FILENAME=${DIST}/mobile-nav${VERSION}
 default: lint build demo
 
 lint:
-	jshint src/*
+	jshint src/*.js
 
 build: concat min
 	rm -f ${FILENAME}.zip
