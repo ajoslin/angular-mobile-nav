@@ -17,7 +17,10 @@ function($rootScope, $compile, $controller, $route, $change) {
         page.element.contents().data('$ngControllerController', page.controller);
       }
       $compile(page.element.contents())(page.scope);
-      viewElement.append(page.element);
+      if (locals && locals.$template) {
+        // only append page element if a template exists
+        viewElement.append(page.element);
+      }
       page.scope.$emit('$viewContentLoaded');
       page.scope.$eval(attrs.onLoad);
     }
