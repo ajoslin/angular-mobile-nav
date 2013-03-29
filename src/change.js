@@ -20,14 +20,15 @@ angular.module('mobile-navigate').factory('$change', ['$q', '$rootScope', functi
     var deferred = $q.defer(),
       nextTransClass, prevTransClass;
 
+    //buildClassString
+    //Transforms array of classes into prefixed class string
+    //(better for performance than multiple .addClass()
+    //@param classes: Array{string}
+    //@return string classNames
     function buildClassString(classes) {
-      var classStr = "";
-      for (var i=0, ii=classes.length; i<ii; i++) {
-        if (classes[i].length) {
-          classStr += " " + options.prefix + classes[i];
-        }
-      }
-      return classStr;
+      return classes.reduce(function(accumulator, cls) {
+        return accumulator + (cls ? (' ' + options.prefix + cls) : '');
+      }, '');
     }
 
     //Convert a preset (eg 'modal') to its array of preset classes if it exists

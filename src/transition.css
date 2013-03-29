@@ -1,3 +1,4 @@
+
 /* Prefix all pages with mb- for no collisions */
 
 /* Page class for all mobile pages */
@@ -36,9 +37,11 @@
 }
 .mb-slide.mb-in.mb-reverse {
   -webkit-animation-name: slideOutToRight;
+  -webkit-transform: translate3d(100%, 0, 0);
 }
 .mb-slide.mb-out {
   -webkit-animation-name: slideOutToLeft;
+  -webkit-transform: translate3d(-100%, 0, 0);
 }
 .mb-slide.mb-out.mb-reverse {
   -webkit-animation-name: slideInFromLeft;
@@ -74,9 +77,11 @@
 }
 .mb-slide-up.mb-in.reverse {
   -webkit-animation-name: slideOutToTop;
+  -webkit-transform: translate3d(0,-100%,0);
 }
 .mb-slide-up.mb-out {
   -webkit-animation-name: slideOutToBottom;
+  -webkit-transform: translate3d(0,100%,0);
 }
 .mb-slide-up.mb-out.reverse {
   -webkit-animation-name: slideInFromBottom;
