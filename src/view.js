@@ -17,7 +17,10 @@ function($rootScope, $compile, $controller, $route, $change) {
         page.element.contents().data('$ngControllerController', page.controller);
       }
       $compile(page.element.contents())(page.scope);
-      viewElement.append(page.element);
+      if (locals && locals.$template) {
+        // only append page element if a template exists
+        viewElement.append(page.element);
+      }
       page.scope.$emit('$viewContentLoaded');
       page.scope.$eval(attrs.onLoad);
     }
@@ -28,7 +31,7 @@ function($rootScope, $compile, $controller, $route, $change) {
         insertPage(dest);
         var transition = reverse ? source.transition() : dest.transition();
         //If the page is marked as reverse, reverse the direction (lol)
-        if (dest.reverse() || ($route.current && $route.current.$route.reverse)) {
+        if (dest.reverse() || ($route.current && $route.current.$route && $route.current.$route.reverse)) {
           reverse = !reverse;
         }
         var promise = $change(dest.element, (source ? source.element : null),
