@@ -51,7 +51,7 @@ function($rootScope, $location, $route) {
   }
   $rootScope.$on('$routeChangeSuccess', function($event, next, last) {
     // Only navigate if it's a valid route and it's not gonna just redirect immediately
-    if (!next.$route || !next.$route.redirectTo) {
+    if (!next.$$route || !next.$$route.redirectTo) {
       (self.onRouteSuccess || defaultRouteSuccess)($event, next, last);
     }
   });
@@ -71,7 +71,7 @@ function($rootScope, $location, $route) {
     //Wait for successful route change before actually doing stuff
     self.onRouteSuccess = function($event, next, last) {
       self.current && navHistory.push(self.current);
-      self.next = new Page(path, transition || (next.$route && next.$route.transition), isReverse);
+      self.next = new Page(path, transition || (next.$$route && next.$$route.transition), isReverse);
       navigate(self.next, self.current, false);
     };
   };
