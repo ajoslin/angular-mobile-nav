@@ -94,15 +94,12 @@ function($rootScope, $location, $route) {
   };
 
   //Android back button functionality for phonegap
-  if ((window.cordova || window.phonegap) && window.device && 
-    device.platform && device.platform.toLowerCase() == "android") {
-    document.addEventListener("deviceready", function() {
-      document.addEventListener("backbutton", function() {
-        var backSuccess = self.back();
-        if (!backSuccess) {
-          navigator.app.exitApp();
-        }
-      });
+  document.addEventListener("deviceready", function() {
+    document.addEventListener("backbutton", function() {
+      var backSuccess = self.back();
+      if (!backSuccess) {
+        navigator.app.exitApp();
+      }
     });
-  }
+  });
 }]);
