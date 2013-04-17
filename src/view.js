@@ -1,4 +1,5 @@
-angular.module('mobile-navigate').directive('mobileView', ['$rootScope', '$compile', '$controller', '$route', '$change',
+angular.module('mobile-navigate')
+.directive('mobileView', ['$rootScope', '$compile', '$controller', '$route', '$change',
 function($rootScope, $compile, $controller, $route, $change) {
 
   function link(scope, viewElement, attrs) {    
@@ -26,12 +27,15 @@ function($rootScope, $compile, $controller, $route, $change) {
     }
 
     var currentTrans;
-    scope.$on('$pageTransitionStart', function transitionStart($event, dest, source, reverse) {
+    scope.$on('$pageTransitionStart', function ($event, dest, source, reverse) {
       function changePage() {
-        insertPage(dest);
+        var current = $route.current ? $route.current.$$route : {};
         var transition = reverse ? source.transition() : dest.transition();
-        //If the page is marked as reverse, reverse the direction (lol)
-        if (dest.reverse() || ($route.current && $route.current.$$route && $route.current.$$route.reverse)) {
+
+        insertPage(dest);
+
+        //If the page is marked as reverse, reverse the direction
+        if (dest.reverse() || current.reverse) {
           reverse = !reverse;
         }
         var promise = $change(dest.element, (source ? source.element : null),
@@ -56,4 +60,32 @@ function($rootScope, $compile, $controller, $route, $change) {
     restrict: 'EA',
     link: link
   };
-}]);
+}])
+
+.directive('scrollable', function($route) {
+  var scrollCache = {};
+  return {
+    restrict: 'EA',
+    link: function(scope, elm, attrs) {
+      var route = $route.current ? $route.current.$$route : {};
+      var template = route.templateUrl || route.template;
+      var rawElm = elm[0];
+
+      //On scope creation, see if we remembered any scroll for this templateUrl
+      //If we did, set it
+      if (template) {
+        //Set oldScroll after a timeout so the page has time to fully load
+        setTimeout(function() {
+          var oldScroll = scrollCache[template];
+          if (oldScroll) {
+            rawElm.scrollTop = oldScroll;
+          }
+        });
+
+        scope.$on('$destroy', function() {
+          scrollCache[template] = rawElm.scrollTop;
+        });
+      }
+    }
+  };
+});

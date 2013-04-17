@@ -3,13 +3,11 @@
   <a id="backButton" class="button" ng-tap="$navigate.back()">Back</a>
   <a class="button" style="left: auto; right: 6px;" ng-tap="$navigate.go('/monkey')">See the Monkey!</a>
 </div>
-<div class="content panel">
-  <ul>
-    <li>
+<div class="content panel" scrollable>
+  <p style="font-size: 20px;">
     There's a monkey on the next page.  Just a warning.
-    </li>
-  </ul>
-  <h2 style="color:darkred;">Here's some text for you.</h2>
+    </p>
+  <h2 style="color:darkred;">Here's some text for you. Try scrolling down, change the page, and go back.  You'll see mobile-nav remembers your scroll position.  It's a nice thing called a scrollable directive - put it on a scrollable element and that guy will persist his scroll even when he's destroyed.</h2>
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis leo sed libero adipiscing egestas. Mauris elit quam, dignissim non accumsan et, cursus ac nunc. In mattis nulla eu quam sollicitudin eu rutrum mi mollis. Pellentesque non ullamcorper lorem. Suspendisse euismod laoreet metus, in tempor erat blandit a. Proin vel eros porta leo bibendum consectetur. Aliquam erat volutpat. Aliquam vitae tincidunt odio. Duis condimentum pharetra hendrerit. Proin sit amet feugiat odio. Nulla diam ligula, semper vitae luctus non, dapibus eget augue. Nulla vitae eros leo.</p>
 
   <p>Nam id tempor orci. Suspendisse potenti. Pellentesque facilisis justo non enim interdum tempus. Nullam a nulla id orci feugiat laoreet non nec magna. In ut placerat odio. Sed convallis aliquet bibendum. Integer luctus mollis metus, vel aliquet libero molestie quis.</p>
