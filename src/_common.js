@@ -4,4 +4,16 @@
  * @license MIT License http://goo.gl/Z8Nlo
  */
 
-angular.module('mobile-navigate', []);
+angular.module('mobile-navigate', [])
+
+.run(function() {
+  //Android back button functionality for phonegap
+  document.addEventListener("deviceready", function() {
+    document.addEventListener("backbutton", function() {
+      var backSuccess = nav.back();
+      if (!backSuccess) {
+        navigator.app.exitApp();
+      }
+    });
+  });
+});
