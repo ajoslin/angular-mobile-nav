@@ -5,7 +5,6 @@
  */
 
 angular.module('ajoslin.mobile-navigate', [])
-
 .run(function() {
   //Android back button functionality for phonegap
   document.addEventListener("deviceready", function() {
