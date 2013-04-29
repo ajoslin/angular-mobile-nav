@@ -13,7 +13,7 @@ Usage
 -----
 
 * Include `mobile-nav.js` and `mobile-nav.css` into your page
-* Declare `'mobile-navigate'` as a dependency for your angular app: `angular.module('myApp', ['mobile-navigate']);`
+* Declare `'mobile-navigate'` as a dependency for your angular app: `angular.module('myApp', ['ajoslin.mobile-navigate']);`
 * Setup your routes as normal with `$routeProvider`.
 * Use the `$navigate` service to do your transitions, instead of `<a>` links.  Use `$navigate.go('/path')`, and `$navigate.back()`.  
 * You can erase history (eg when switching tabs) with `$navigate.eraseHistory()`

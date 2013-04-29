@@ -4,7 +4,7 @@
  * @license MIT License http://goo.gl/Z8Nlo
  */
 
-angular.module('mobile-navigate', [])
+angular.module('ajoslin.mobile-navigate', [])
 
 .run(function() {
   //Android back button functionality for phonegap

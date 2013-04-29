@@ -12,7 +12,7 @@ build: concat min
 	zip ${FILENAME}.zip ${DIST}/*.js ${DIST}/*.css
 
 concat: 
-	mkdir -p dist
+	mkdir -p ${DIST}
 	cat src/*.js > ${FILENAME}.js
 	cat src/*.css > ${FILENAME}.css
 
@@ -20,7 +20,10 @@ min:
 	uglifyjs < ${FILENAME}.js > ${FILENAME}.min.js
 
 demo:
-	cp -R demo/* dist
+	cp -R demo/* ${DIST}
+
+release: build
+	cp ${DIST}/*.js .
 
 .PHONY: lint build concat min demo
   

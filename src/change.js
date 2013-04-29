@@ -2,7 +2,7 @@
  * $change
  * Service to transition between two elements
  */
-angular.module('mobile-navigate')
+angular.module('ajoslin.mobile-navigate')
 
 .provider('$change', function() {
   var transitionPresets = {  //[nextClass, prevClass]

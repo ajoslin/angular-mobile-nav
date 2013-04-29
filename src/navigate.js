@@ -1,4 +1,4 @@
-angular.module('mobile-navigate')
+angular.module('ajoslin.mobile-navigate')
 
 .provider('$navigate', function() {
   this.$get = ['$rootScope', '$location', '$route', function($rootScope, $location, $route) {

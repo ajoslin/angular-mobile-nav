@@ -1,4 +1,4 @@
-angular.module('mobile-navigate')
+angular.module('ajoslin.mobile-navigate')
 .directive('mobileView', ['$rootScope', '$compile', '$controller', '$route', '$change',
 function($rootScope, $compile, $controller, $route, $change) {
 
