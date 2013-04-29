@@ -23,7 +23,7 @@ demo:
 	cp -R demo/* ${DIST}
 
 release: build
-	cp ${DIST}/*.js .
+	cp ${DIST}/*.js ${DIST}/*.css .
 
 .PHONY: lint build concat min demo
   
