@@ -4,7 +4,7 @@
  * @license MIT License http://goo.gl/Z8Nlo
  */
 
-angular.module('mobile-navigate', [])
+angular.module('ajoslin.mobile-navigate', [])
 
 .run(function() {
   //Android back button functionality for phonegap
@@ -21,7 +21,7 @@ angular.module('mobile-navigate', [])
  * $change
  * Service to transition between two elements
  */
-angular.module('mobile-navigate')
+angular.module('ajoslin.mobile-navigate')
 
 .provider('$change', function() {
   var transitionPresets = {  //[nextClass, prevClass]
@@ -126,7 +126,7 @@ angular.module('mobile-navigate')
     };
   }];
 });
-angular.module('mobile-navigate')
+angular.module('ajoslin.mobile-navigate')
 
 .provider('$navigate', function() {
   this.$get = ['$rootScope', '$location', '$route', function($rootScope, $location, $route) {
@@ -226,7 +226,7 @@ angular.module('mobile-navigate')
     return nav;
   }];
 });
-angular.module('mobile-navigate')
+angular.module('ajoslin.mobile-navigate')
 .directive('mobileView', ['$rootScope', '$compile', '$controller', '$route', '$change',
 function($rootScope, $compile, $controller, $route, $change) {
 

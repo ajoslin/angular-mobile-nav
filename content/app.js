@@ -1,4 +1,4 @@
-angular.module('myApp', ['mobile-navigate'])
+angular.module('myApp', ['ajoslin.mobile-navigate'])
 .config(function($routeProvider) {
   $routeProvider.when("/one", {
     templateUrl: "content/page1.html"
