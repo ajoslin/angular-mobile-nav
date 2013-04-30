@@ -27,4 +27,5 @@ Development
 
 * To use the Makefile, install jshint and uglifyjs with `npm install -g jshint uglifyjs`.
 * If you are on windows and can't use a Makefile, there's nothing else at the moment.
+* To get the demo to work, you first have to run `make`, then open the demo at `dist/index.html`.
 * When pushing a new build, go to the gh-pages branch and move the contents dist folder up one level (`mv dist/* .`)
