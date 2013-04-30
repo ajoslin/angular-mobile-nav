@@ -12,6 +12,8 @@ Licensed with MIT License.
 Usage
 -----
 
+* **Requires AngularJS 1.1.4+**
+
 * Include `mobile-nav.js` and `mobile-nav.css` into your page
 * Declare `'mobile-navigate'` as a dependency for your angular app: `angular.module('myApp', ['ajoslin.mobile-navigate']);`
 * Setup your routes as normal with `$routeProvider`.
