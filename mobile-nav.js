@@ -5,7 +5,6 @@
  */
 
 angular.module('ajoslin.mobile-navigate', [])
-
 .run(function() {
   //Android back button functionality for phonegap
   document.addEventListener("deviceready", function() {
@@ -290,7 +289,7 @@ function($rootScope, $compile, $controller, $route, $change) {
   };
 }])
 
-.directive('scrollable', function($route) {
+.directive('scrollable', ['$route', function($route) {
   var scrollCache = {};
   return {
     restrict: 'EA',
@@ -316,4 +315,4 @@ function($rootScope, $compile, $controller, $route, $change) {
       }
     }
   };
-});
+}]);
