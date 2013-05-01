@@ -289,7 +289,7 @@ function($rootScope, $compile, $controller, $route, $change) {
   };
 }])
 
-.directive('scrollable', function($route) {
+.directive('scrollable', ['$route', function($route) {
   var scrollCache = {};
   return {
     restrict: 'EA',
@@ -315,4 +315,4 @@ function($rootScope, $compile, $controller, $route, $change) {
       }
     }
   };
-});
+}]);
