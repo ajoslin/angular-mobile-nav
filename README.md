@@ -1,3 +1,5 @@
+** More features are on their way! Check the [diiscussion](https://github.com/ajoslin/angular-mobile-nav/issues/48) for version 2.0 **
+
 angular-mobile-nav
 ==================
 
