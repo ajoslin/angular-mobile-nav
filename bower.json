@@ -2,7 +2,8 @@
   "name": "angular-mobile-nav",
   "version": "1.0.0",
   "main": [
-    "./mobile-nav.js"
+    "./mobile-nav.js",
+    "./mobile-nav.css"
   ],
   "license": "MIT",
   "ignore": [
