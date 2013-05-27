@@ -1,5 +1,5 @@
 angular.module('ajoslin.mobile-navigate')
-.directive('mobileView', ['$rootScope', '$compile', '$controller', '$route', '$change',
+.directive('mobileView', ['$rootScope', '$compile', '$controller', '$route', '$change', '$q',
 function($rootScope, $compile, $controller, $route, $change, $q) {
 
   function link(scope, viewElement, attrs) {    
