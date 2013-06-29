@@ -29,23 +29,48 @@
   0% { -webkit-transform: translate3d(0,0,0); }
   100% { -webkit-transform: translate3d(-100%, 0, 0); }
 }
+@keyframes slideInFromRight {
+  0% { transform: translate3d(100%, 0, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+@keyframes slideOutToRight {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(100%, 0, 0); }
+}
+@keyframes slideInFromLeft {
+  0% { transform: translate3d(-100%,0,0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+@keyframes slideOutToLeft {
+  0% { transform: translate3d(0,0,0); }
+  100% { transform: translate3d(-100%, 0, 0); }
+}
+
 .mb-slide {
   -webkit-animation-duration: 0.3s;
   -webkit-animation-timing-function: ease;
+  animation-duration: 0.3s;
+  animation-timing-function: ease;
 }
 .mb-slide.mb-in {
   -webkit-animation-name: slideInFromRight;
+  animation-name: slideInFromRight;
 }
 .mb-slide.mb-in.mb-reverse {
   -webkit-animation-name: slideOutToRight;
   -webkit-transform: translate3d(100%, 0, 0);
+  animation-name: slideOutToRight;
+  transform: translate3d(100%, 0, 0);
 }
 .mb-slide.mb-out {
   -webkit-animation-name: slideOutToLeft;
   -webkit-transform: translate3d(-100%, 0, 0);
+  animation-name: slideOutToLeft;
+  transform: translate3d(-100%, 0, 0);
 }
 .mb-slide.mb-out.mb-reverse {
   -webkit-animation-name: slideInFromLeft;
+  animation-name: slideInFromLeft;
 }
 
 /*
@@ -68,24 +93,48 @@
   0% { -webkit-transform: translate3d(0,0,0); }
   100% { -webkit-transform: translate3d(0, -100%, 0); }
 }
+@keyframes slideInFromTop {
+  0% { transform: translate3d(0, 100%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+@keyframes slideOutToTop {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(0, 100%, 0); }
+}
+@keyframes slideInFromBottom {
+  0% { transform: translate3d(0,-100%,0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+@keyframes slideOutToBottom {
+  0% { transform: translate3d(0,0,0); }
+  100% { transform: translate3d(0, -100%, 0); }
+}
 
 .mb-slide-up {
   -webkit-animation-duration: 0.3s;
   -webkit-animation-timing-function: ease;
+  animation-duration: 0.3s;
+  animation-timing-function: ease;
 }
 .mb-slide-up.mb-in {
   -webkit-animation-name: slideInFromTop;
+  animation-name: slideInFromTop;
 }
 .mb-slide-up.mb-in.reverse {
   -webkit-animation-name: slideOutToTop;
   -webkit-transform: translate3d(0,-100%,0);
+  animation-name: slideOutToTop;
+  transform: translate3d(0,-100%,0);
 }
 .mb-slide-up.mb-out {
   -webkit-animation-name: slideOutToBottom;
   -webkit-transform: translate3d(0,100%,0);
+  animation-name: slideOutToBottom;
+  transform: translate3d(0,100%,0);
 }
 .mb-slide-up.mb-out.reverse {
   -webkit-animation-name: slideInFromBottom;
+  animation-name: slideInFromBottom;
 }
 
 
@@ -101,18 +150,30 @@
   0% { -webkit-transform: translate3d(0, 0, 0); }
   100% { -webkit-transform: translate3d(0, 100%, 0); }
 }
+@keyframes modalUp {
+  0% { transform: translate3d(0, 100%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+@keyframes modalDown {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(0, 100%, 0); }
+}
 .mb-modal {
   z-index: 10;
   -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
 }
 .mb-modal.mb-in,
 .mb-modal.mb-out.mb-reverse {
   -webkit-animation-name: modalUp;
+  animation-name: modalUp;
 }
 .mb-modal.mb-in.mb-reverse,
 .mb-modal.mb-out {
   z-index: 9; /* Lower than modal-in */
   -webkit-animation-name: modalDown;
   -webkit-transform: translate3d(0, 100%, 0);
+  animation-name: modalDown;
+  transform: translate3d(0, 100%, 0);
 }
 

@@ -37,7 +37,7 @@ angular.module('ajoslin.mobile-navigate')
   var OUT_CLASS = "out";
   var REVERSE_CLASS = "reverse";
   var DONE_CLASS = "done";
-  var ANIMATION_END = "webkitAnimationEnd";
+  var ANIMATION_END = "animationName" in document.documentElement.style ? "animationend" : "webkitAnimationEnd";
 
   this.setTransitionPreset = function(transitionName, inClass, outClass) {
     inClass = inClass || '';
