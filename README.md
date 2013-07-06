@@ -1,5 +1,4 @@
 
-
 angular-mobile-nav
 ==================
 
@@ -11,7 +10,7 @@ A simple navigation service and directive which will transition between partials
 
 Licensed with MIT License.
 
-State of this Project (July 5th)
+State of this Project (as of July 2013)
 -------------------------------
 
 * I will add no new features to this - only continue to maintain it.
