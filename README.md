@@ -11,6 +11,13 @@ A simple navigation service and directive which will transition between partials
 
 Licensed with MIT License.
 
+State of this Project (July 5th)
+-------------------------------
+
+* I will add no new features to this - only continue to maintain it.
+* I am currently working on and recommending another project for a more full scale app solution - [angular-jqm](http://github.com/opitzconsulting/angular-jqm) ([dicusssion](https://github.com/ajoslin/angular-mobile-nav/issues/48#issuecomment-20045650))
+* angular-mobile-nav will remain a good solution for a minimal mobile angularjs navigation library, with no frills or addons.
+
 Usage
 -----
 
