@@ -17,7 +17,6 @@ angular.module('ajoslin.mobile-navigate')
   var OUT_CLASS = "out";
   var REVERSE_CLASS = "reverse";
   var DONE_CLASS = "done";
-  var ANIMATION_END = "animationName" in document.documentElement.style ? "animationend" : "webkitAnimationEnd";
 
   this.setTransitionPreset = function(transitionName, inClass, outClass) {
     inClass = inClass || '';
@@ -28,7 +27,17 @@ angular.module('ajoslin.mobile-navigate')
     defaultOptions = angular.extend(defaultOptions, opts || {});
   };
 
-  this.$get = ['$q', '$rootScope', function($q, $rootScope) {
+  this.$get = ['$q', '$rootScope', '$sniffer', function($q, $rootScope, $sniffer) {
+    //TODO remove this fix when angular-1.2 comes out
+    //This fixes a known bug with android $sniffer in angular-1.1.x not finding prefix properly
+    if (!$sniffer.vendorPrefix) {
+      if (angular.isString( $document[0].body.style.webkitTransition )) {
+        $sniffer.vendorPrefix = 'webkit';
+      }
+    }
+    var ANIMATION_END = $sniffer.vendorPrefix ? 
+      $sniffer.vendorPrefix.toLowerCase() + 'AnimationEnd' :
+      'animationend';
 
     return function change(next, prev, transType, reverse, options) {
       options = angular.extend(options || {}, defaultOptions);
