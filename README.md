@@ -13,8 +13,10 @@ State of this Project (as of July 2013)
 -------------------------------
 
 * I will add no new features to this - only continue to maintain it.
-* I am currently working on and recommending another project for a more full scale app solution - [angular-jqm](http://github.com/opitzconsulting/angular-jqm) ([dicusssion](https://github.com/ajoslin/angular-mobile-nav/issues/48#issuecomment-20045650))
-* angular-mobile-nav will remain a good solution for a minimal mobile angularjs navigation library, with no frills or addons.
+* I recommend a solution like [Ionic Framework](http://ionicframework.com) for a full-scale mobile application solution.
+* angular-mobile-nav is a good solution for a minimal mobile angularjs navigation library, with no frills or addons.
+* However, it could be done *much* simpler post angular-1.2.x, using ng-view, ng-animate, and some locationChangeSuccess listening to detect back.  
+* If you want to fix bugs with this, please email me and ask and I may make you a collaborator.
 
 Usage
 -----
